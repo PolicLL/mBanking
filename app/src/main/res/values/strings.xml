@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="mbanking_app_registration">mBanking App Registration</string>
+    <string name="enter_user_s_name">Enter user\'s name :</string>
+    <string name="enter_user_s_surname">Enter user\'s surname :</string>
+    <string name="register">REGISTER</string>
+    <string name="name">Name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login">LOG IN</string>
+    <string name="date">DATE</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="amount">AMOUNT</string>
+    <string name="type">TYPE</string>
+    <string name="name_and_surname">Name and Surname</string>
+    <string name="change_account">Change Account</string>
+    <string name="transactions">TRANSACTIONS</string>
+    <string name="log_out">Log Out</string>
+    <string name="account_number">Account Number</string>
+    <string name="log_in">LOG IN</string>
+    <string name="mbanking_app">mBanking App</string>
+    <string name="registerr">REGISTER</string>
+</resources>
