@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">mBanking</string>
+    <string name="app_title">mBanking</string>
+    <string name="welcome_back_log_in_screen_message">Welcome back</string>
+    <string name="log_in_button_text">Log In</string>
+    <string name="text_field_name_label">Name</string>
+    <string name="text_field_surname_label">Surname</string>
+    <string name="text_field_pin_label">Pin</string>
+    <string name="button_sign_up_text">Sign up</string>
+    <string name="button_forgot_password_text">Forgot Password?</string>
+    <string name="registration_from_title">Registration</string>
+    <string name="sign_in_button_text">Sign in</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="name_textField_placeholder">\"Insert your name : \"</string>
+    <string name="name_textField_label">Name</string>
+    <string name="surname_textField_placeholder">\"Insert your surname : \"</string>
+    <string name="surname_textField_label">Surname</string>
+    <string name="pin_textField_placeholder">\"Insert your pin : \"</string>
+    <string name="pin_textField_label">Pin</string>
+    <string name="registration_text_field_name_label">Name</string>
+    <string name="registration_text_field_surname_label">Surname</string>
+    <string name="registration_text_field_pin_label">Registration pin</string>
+    <string name="login_no_user_toast_message">There is no user with this email and password.</string>
+    <string name="sign_in_wrong_input_message">Wrong input</string>
+</resources>
