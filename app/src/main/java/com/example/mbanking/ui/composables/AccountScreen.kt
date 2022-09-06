@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,9 +32,20 @@ import java.time.ZoneId
 
 var TAG = "AccountScreen"
 
+/*
+
+Log.i(TAG , "Before if statement : $tempAccount \n")
+Log.i(TAG , "Before if statement : $tempAccountTransactions \n")
+
+
+ */
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun AccountScreen(accountViewModel : AccountViewModel, navController: NavController, userId : Int?) {
+fun AccountScreen(accountViewModel : AccountViewModel,
+                  navController: NavController,
+                  userId : Int?) {
+
 
     Log.i(TAG , "userId : $userId")
 
@@ -40,13 +53,14 @@ fun AccountScreen(accountViewModel : AccountViewModel, navController: NavControl
         accountViewModel.getData(userId)
     }
 
-    val tempAccount by accountViewModel.tempAccount.collectAsState()
+    var tempAccount = accountViewModel.tempAccount.collectAsState().value
 
-    val tempAccountTransactions by accountViewModel.transactions.collectAsState()
+    var tempAccountTransactions = accountViewModel.transactions.collectAsState().value
 
     var showDialog by remember { mutableStateOf(false) }
 
-
+    Log.i("AccountScreen" , "After If tempAccount : $tempAccount")
+    Log.i("AccountScreen" , "After If tempAccountTransactions : $tempAccountTransactions")
 
     Column(modifier = Modifier.fillMaxSize()) {
 
@@ -62,10 +76,19 @@ fun AccountScreen(accountViewModel : AccountViewModel, navController: NavControl
 
             Button(onClick = {
 
+                Log.i("AccountScreen" , "Before logOut tempAccount : $tempAccount")
+                Log.i("AccountScreen" , "Before logOut tempAccountTransactions : $tempAccountTransactions")
+
                 accountViewModel.logOut()
 
+                tempAccount = Account()
+                tempAccountTransactions = emptyList()
+
+                Log.i("AccountScreen" , "After logOut tempAccount : $tempAccount")
+                Log.i("AccountScreen" , "After logOut tempAccountTransactions : $tempAccountTransactions")
+
                navController.navigate(AppScreenNames.LogInScreen.route){
-                   popUpTo(0)
+
                }
 
 
@@ -106,6 +129,7 @@ fun AccountScreen(accountViewModel : AccountViewModel, navController: NavControl
         }
 
         LazyColumn (modifier = Modifier.padding(16.dp)) {
+            Log.i("AccountScreen" , "In LAZY COLUMN")
             items(tempAccountTransactions) {
                     transaction -> TransactionItem(transaction)
             }
@@ -117,8 +141,6 @@ fun AccountScreen(accountViewModel : AccountViewModel, navController: NavControl
 
 @Composable
 fun AccountDialog(onDismiss:() -> Unit, accountViewModel: AccountViewModel) {
-
-    val list = listOf(Account() , Account())
 
     val listOfAccounts by accountViewModel.accounts.collectAsState()
 
@@ -139,6 +161,7 @@ fun AccountDialog(onDismiss:() -> Unit, accountViewModel: AccountViewModel) {
                 )
 
                 LazyColumn{
+
                     items(listOfAccounts) {
                             tempAccount -> AccountText(account = tempAccount ,
                         accountViewModel,
@@ -189,11 +212,6 @@ fun AccountText(account : Account ,
     }
 }
 
-@Composable
-fun AccountInfoText(key : String , value : String) {
-    Text(text = "$key : $value" , fontSize = 20.sp)
-}
-
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TransactionItem(transaction: Transaction) {
@@ -206,12 +224,12 @@ fun TransactionItem(transaction: Transaction) {
 
         val date: LocalDate = transaction.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
 
-        Text(text = "${date}" , fontSize = 20.sp , modifier = Modifier.width(140.dp))
+        Text(text = "$date" , fontSize = 20.sp , modifier = Modifier.width(140.dp))
 
         Spacer(Modifier.width(50.dp))
 
         Column() {
-            Text(text = "${transaction.description}" , fontSize = 18.sp)
+            Text(text = transaction.description, fontSize = 18.sp)
             Text(text = "${transaction.amount} ${transaction.currency}" , fontSize = 24.sp)
         }
     }

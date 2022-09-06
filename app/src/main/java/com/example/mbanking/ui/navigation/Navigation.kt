@@ -24,9 +24,9 @@ fun Navigation(context : Context){
 
     val userViewModel = UserViewModel(context = context)
 
-    val accountViewModel = AccountViewModel(context = context , navController = navController)
-
     val logInViewModel = LogInViewModel(context = context)
+
+    val accountViewModel = AccountViewModel(context = context)
 
     NavHost(navController = navController, startDestination = AppScreenNames.LogInScreen.route){
 
@@ -45,8 +45,9 @@ fun Navigation(context : Context){
 
             backStackEntry ->
 
-            AccountScreen(accountViewModel ,
-                userId = backStackEntry.arguments?.getInt("userId") ?: 0 , navController = navController)
+            AccountScreen(userId = backStackEntry.arguments?.getInt("userId") ?: 0 ,
+                navController = navController ,
+            accountViewModel = accountViewModel)
         }
     }
 }
